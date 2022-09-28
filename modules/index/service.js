@@ -5,6 +5,10 @@ module.exports = class Service {
   async generate(req, res) {
     const { payload, name, m, w, light, dark, download } = req.query;
 
+    if (!payload) {
+      return res.status(400).send('Missing payload');
+    }
+
     const options = {
       margin: m || 1,
       width: w || 500,
